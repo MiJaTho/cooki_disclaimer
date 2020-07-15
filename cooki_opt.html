@@ -1,0 +1,176 @@
+
+<style type="text/css">
+	/* The switch - the box around the slider */
+	.switch {  position:relative;display:inline-block;width:60px;height:34px;} 
+	/* Hide default HTML checkbox */
+	.switch input { opacity:0;width:0;height:0;} 
+	/* The slider */
+	.slider { position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background-color:#ccc;-webkit-transition:.4s;transition:.4s;} 
+	.slider:before { position:absolute;content:"";height:26px;width:26px;left:4px;bottom:4px;background-color:white;-webkit-transition:.4s;transition:.4s;} 
+	input:checked+.slider { background-color:#e73358;} 
+	input:focus+.slider { box-shadow:0 0 1px #e73358;} 
+	input:checked+.slider:before { -webkit-transform:translateX(26px);-ms-transform:translateX(26px);transform:translateX(26px);} 
+	/* Rounded sliders */
+	.slider.round { border-radius:34px;} 
+	.slider.round:before { border-radius:50%;} 
+	#cookie-notice { display:block;position:fixed;min-width:100%;height:auto;z-index:100;font-size:13px;line-height:20px;left:0;text-align:center;bottom:0;} 
+	#cookie-notice .button.wp-default { font-family:sans-serif;display:inline-block;font-style:normal;cursor:pointer;border-style:solid;border-width:1px;font-size:12px;text-decoration:none;outline:0;} 
+	.cookie-notice-container { padding:0.5%;text-align:center;} 
+	#cn-notice-text { color:white;display:block;} 
+	#cookie-notice .button { margin-left:3%;} 
+	/*#cookie-notice .noticebutton.wp-default { line-height:18px;padding:4px 12px;background:linear-gradient(to bottom, #FEFEFE, #F4F4F4) #F3F3F3;border-color:#BBB;color:#333;text-shadow:0 1px 0 #FFF;-moz-box-sizing:border-box;border-radius:3px;white-space:nowrap;font-weight:bold;} */
+	.wp-default { line-height:18px;padding:4px 12px;background:#e73358;border-color:#e73358;color:#fff;-moz-box-sizing:border-box;border-radius:3px;white-space:nowrap;font-weight:bold; } 
+	.co_btn { cursor: pointer; padding:4px 10px;background:#e73358;border-color:#e73358;color:#fff;-moz-box-sizing:border-box;border-radius:5px; margin:0 5px} 
+	#cookie-notice .button.wp-default:focus,
+	#cookie-notice .button.wp-default:hover { background:linear-gradient(to bottom, #FFF, #F3F3F3) #F3F3F3;border-color:#999;color:#222; } 
+	
+	.co_overlay{width:100%;bottom:0; left:0;right:0;position:fixed; margin:auto;padding:1em;background-color:rgba(0, 0, 0, 0.85);z-index:1000;color:white } 
+	.co_generic{ }
+	.co_generic form { margin-top:1em}
+	.co_generic_inner,.co_details_inner { max-width:800px;margin:auto }
+	.co_btnwrap { padding-top:1em }
+	.co_details { max-width:800px}
+	.ncpo_a:hover {  cursor:pointer; color:#0000EE !important }
+	.co_a {  cursor:pointer; text-decoration:underline !important; color:#e73358  !important }
+	@media only screen and (max-width: 600px) { .co_overlay { max-height:70%; font-size:0.5em  }}
+</style>
+
+<div class="co_overlay co_generic">
+	<div class="co_generic_inner">
+		Um unsere Webseiten für Sie optimal zu gestalten und fortlaufend zu verbessern, sowie zur interessengerechten
+		Ausspielung von News, Artikeln und Anzeigen, verwenden wir Cookies. Durch Bestätigen des Buttons &quot;Akzeptieren&quot;
+		stimmen Sie der Verwendung zu. Über <a class="co_a" id="co_detailsbtn">Konfigurieren</a> können Sie auswählen, welche Cookies Sie zulassen
+		wollen. Weitere Informationen erhalten Sie in unserer <a class="co_a" href="/datenschutz.html">Datenschutzerklärung.</a>
+		<div class="co_btnwrap">
+			<button tpye="button" class="co_btn" id="co_genericbtn" >Akzeptieren</button>
+		</div>
+	</div>
+</div>
+
+<div class="co_overlay co_details" style="display:none">
+	<div class="co_details_inner">
+		<span id="cn-notice-text">Cookie-Einstellungen</span><br />
+		<div style="float:left;padding-right:25px;">
+		<form id="co_details_form">
+			<!-- Rounded switch -->
+			<label class="switch" class="toggleCookieLabel">
+				<input type="checkbox" name="co[base]" id="co_perm_base" class="toggleCookiePerm" value="true" checked="checked">
+				<span class="slider round"></span>
+			</label>
+		</div>
+		<div style="float:left;max-width:500px;padding-bottom:20px;">
+			Essenzielle Cookies<br />
+			Diese Cookies sind notwendig, um wesentliche Funktionen der Website auszuführen.
+			Daher sind sie immer aktiviert.
+		</div>
+		<br />
+		<br style="clear: both;" />
+	
+		<div style="float:left;padding-right:25px;">
+			<!-- Rounded switch -->
+			<label class="switch" class="toggleCookieLabel" for="co_perm_func">
+				<input type="checkbox" name="co[func]" id="co_perm_func" class="toggleCookiePerm" value="true">
+				<span class="slider round"></span>
+			</label>
+		</div>
+		<div style="float:left;max-width:500px;padding-bottom:20px;">
+			Funktionelle  und statistische Cookies<br />
+			Diese Cookies sind optional. Wir können damit Ihre Erfahrungen auf der Website
+			nachvollziehen, und Sie ggfs. um Feedback bitten.
+		</div>
+		<br />
+		<br style="clear: both;" />
+	
+		<div style="float:left;padding-right:25px;">
+			<!-- Rounded switch -->
+			<label class="switch" class="toggleCookieLabel" for="co_perm_ad">
+				<input type="checkbox" name="co[ad]" id="co_perm_ad" class="toggleCookiePerm" value="true">
+				<span class="slider round"></span>
+			</label>
+		</div>
+		<div style="float:left;max-width:500px;padding-bottom:20px;">
+			Werbe- und Analyse Cookies<br />
+			Diese Cookies werden von Werbeagenturen verwendet, um Anzeigen zu schalten,
+			die für Sie von Interesse sind, sowie um Werbung auf und jenseits von diese Webseite
+			zu personalisieren. Diese Cookies ermöglichen es uns auch, Informationen über
+			Ihre Nutzung unserer Website mit unseren Partnern auszutauschen. Dazu gehören
+			soziale Medien, Werbefirmen und Analysten. Diese Partner (z.B. Facebook und Google)
+			können diese Informationen ggf. mit anderen Daten zusammenführen, die Sie
+			ihnen zur Verfügung gestellt haben oder die sie erfasst haben, während Sie
+			deren Dienste nutzen.
+	
+		</div>
+		<br />
+		<br style="clear: both;" />
+		<div>
+			Wenn Sie mehr darüber erfahren möchten, wie wir mit Ihren personenbezogenen
+			Daten umgehen und welche Rechte Sie diesbezüglich haben, lesen Sie bitte unsere
+			Datenschutzrichtlinie.
+		</div>
+		<br />
+		<a id="co_save_details" class=" wp-default co_btn" style="text-decoration:none;">Einstellungen so
+			beibehalten und
+			schlie&szlig;en
+		</a>
+	</div>
+</div>
+<!-- END cookie disclaimer -->
+<!-- START JS/JQUERY cookie disclaimer -->
+<script src="/js/new/jquery-3.3.1.min.js"></script>
+<script>
+	/* Functions for setting and retrieving disclaimer cookie */
+	function setCookie(name, value, days) {
+		var expires = "";
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toUTCString();
+			}
+		var done = document.cookie = name + "=" + (value || "") + expires + "; path=/";
+		}
+
+	function getCookie(name) {
+		var nameEQ = name + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+			}
+		return null;
+		}
+
+	function deleteCookie(name) {
+		document.cookie = name + '=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
+		}
+
+	function toggleCookiePerm(name) {
+		if (getCookie(name) != null) {
+			//alert('have cookie');
+			deleteCookie(name);
+			return null;
+			}
+		setCookie(name, 'accepted', 365);
+		}
+
+	$(".toggleCookiePerm").change(function () {
+		return true;
+		var cname = $(this).attr('id');
+		//alert(cname);
+		toggleCookiePerm(cname);
+		} );
+	
+	
+	$("#co_genericbtn").click(function() { 
+	    $.ajax("/");
+        $(".co_generic").hide();
+	});
+	
+	 $("#co_save_details").click( function() {
+	 	$.ajax("/");
+	 	$(".co_overlay").hide();
+	 	} );
+	 	
+	$("#co_detailsbtn").click(function() { $(".co_generic").hide(); $(".co_details").show(); } );
+	
+</script>
